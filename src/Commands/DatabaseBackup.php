@@ -4,6 +4,7 @@ namespace Grafite\Database\Commands;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Spatie\DbDumper\Databases\MySql;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,7 @@ class DatabaseBackup extends Command
      *
      * @var string
      */
-    protected $signature = 'db:backup';
+    protected $signature = 'db:backup {--tables=}';
 
     /**
      * The console command description.
@@ -32,23 +33,42 @@ class DatabaseBackup extends Command
     {
         $this->info('Starting database backup');
 
-        $backup = base_path('database/db-snapshot-latest.sql');
+        $backupStoragePath = config('backup.path', base_path('database/backups'));
+        $backupName = config('backup.filename', 'db-backup');
 
-        if (file_exists($backup)) {
+        if (!File::isDirectory($backupStoragePath)) {
+            File::makeDirectory($backupStoragePath);
+        }
+
+        $backupPath = "{$backupStoragePath}/{$backupName}.sql";
+        $tables = $this->option('tables');
+
+        if (! is_null($tables)) {
+            $tables = explode(',', $tables);
+        }
+
+        if (file_exists($backupPath)) {
             $this->info('Copying old backup');
             $date = Carbon::now()->format('d-M-Y');
-            $archivedBackup = base_path('database/db-snapshot-'.$date.'.sql');
+            $archivedBackup = "{$backupStoragePath}/{$backupName}-{$date}.sql";
 
-            $contents = file_get_contents($backup);
-            file_put_contents($archivedBackup, $contents);
+            $contents = File::get($backupPath);
+            File::put($archivedBackup, $contents);
+
             $this->info('Old backup copied');
         }
 
-        MySql::create()
+        $backup = MySql::create()
             ->setDbName(config('database.connections.mysql.database'))
             ->setUserName(config('database.connections.mysql.username'))
-            ->setPassword(config('database.connections.mysql.password'))
-            ->dumpToFile(base_path('database/db-snapshot-latest.sql'));
+            ->setPassword(config('database.connections.mysql.password'));
+
+        if (! is_null($tables)) {
+            $backup->includeTables($tables);
+            $backupName = $backupName . '-' . implode('-', $tables);
+        }
+
+        $backup->dumpToFile("{$backupStoragePath}/{$backupName}.sql");
 
         $this->info('Completed');
     }

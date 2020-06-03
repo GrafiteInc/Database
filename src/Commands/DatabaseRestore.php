@@ -4,6 +4,7 @@ namespace Grafite\Database\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DatabaseRestore extends Command
 {
@@ -12,7 +13,7 @@ class DatabaseRestore extends Command
      *
      * @var string
      */
-    protected $signature = 'db:restore';
+    protected $signature = 'db:restore {--backup=}';
 
     /**
      * The console command description.
@@ -28,11 +29,19 @@ class DatabaseRestore extends Command
      */
     public function handle()
     {
+        $backupPath = $this->option('backup');
+
+        if (is_null($backupPath)) {
+            $backupStoragePath = config('backup.path', base_path('database/backups'));
+            $backupName = config('backup.filename', 'db-backup');
+
+            $backupPath = "{$backupStoragePath}/{$backupName}.sql";
+        }
+
         $this->info('Starting Database restore');
 
-        $dbDump = base_path('database/db-snapshot-latest.sql');
-        $dbDumpContents = file_get_contents($dbDump);
-        $fileSize = filesize($dbDump) + 2000;
+        $dbDumpContents = File::get($backupPath);
+        $fileSize = File::size($backupPath) + 2000;
 
         DB::unprepared($dbDumpContents.' --max_allowed_packet='.$fileSize);
 
