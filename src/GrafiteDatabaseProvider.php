@@ -33,6 +33,8 @@ class GrafiteDatabaseProvider extends ServiceProvider
             DatabaseRestore::class,
             DatabaseCreate::class,
             DatabaseDrop::class,
+            DatabaseDownload::class,
+            DatabaseUpload::class,
         ]);
     }
 }
