@@ -6,7 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Grafite\Database\Commands\DatabaseDrop;
 use Grafite\Database\Commands\DatabaseBackup;
 use Grafite\Database\Commands\DatabaseCreate;
+use Grafite\Database\Commands\DatabaseUpload;
 use Grafite\Database\Commands\DatabaseRestore;
+use Grafite\Database\Commands\DatabaseDownload;
 
 class GrafiteDatabaseProvider extends ServiceProvider
 {
@@ -15,7 +17,9 @@ class GrafiteDatabaseProvider extends ServiceProvider
      */
     public function boot()
     {
-        // do nothing
+        $this->publishes([
+            __DIR__ . '/../config/backup.php' => base_path('config/backup.php'),
+        ]);
     }
 
     /**
