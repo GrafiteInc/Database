@@ -2,7 +2,7 @@
 
 **Database** - A set of handy commands for MySQL databases.
 
-[![Build Status](https://travis-ci.org/GrafiteInc/database.svg?branch=master)](https://travis-ci.org/GrafiteInc/database)
+[![Laravel Tests](https://github.com/grafiteinc/Database/workflows/Laravel%20Tests/badge.svg)](https://github.com/grafiteinc/Database/actions?query=workflow%3A%22Laravel+Tests%22)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8c00a046fec32d8b8ac7/maintainability)](https://codeclimate.com/github/GrafiteInc/database/maintainability)
 [![Packagist](https://img.shields.io/packagist/dt/grafite/database.svg)](https://packagist.org/packages/grafite/database)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/database)
