@@ -43,6 +43,8 @@ class DatabaseRestore extends Command
         $dbDumpContents = File::get($backupPath);
         $fileSize = File::size($backupPath) + 2000;
 
+        DB::unprepared('set global max_allowed_packet='.$fileSize);
+
         DB::unprepared($dbDumpContents.' --max_allowed_packet='.$fileSize);
 
         $this->info('Completed');
