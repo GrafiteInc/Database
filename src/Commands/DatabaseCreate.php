@@ -4,6 +4,7 @@ namespace Grafite\Database\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 class DatabaseCreate extends Command
 {
@@ -40,6 +41,10 @@ class DatabaseCreate extends Command
     {
         $name = $this->argument('name');
         $charset = config('database.connections.mysql.charset', 'utf8mb4');
+        $connection = config('database.default');
+        $db = "database.connections.{$connection}.database";
+
+        Config::set($db, null);
 
         $sql = "CREATE DATABASE `{$name}` DEFAULT CHARACTER SET = `{$charset}`";
 
