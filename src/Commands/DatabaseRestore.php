@@ -13,7 +13,7 @@ class DatabaseRestore extends Command
      *
      * @var string
      */
-    protected $signature = 'db:restore {--backup=}';
+    protected $signature = 'db:restore {--backup=} {--connection=}';
 
     /**
      * The console command description.
@@ -29,6 +29,12 @@ class DatabaseRestore extends Command
      */
     public function handle()
     {
+        $connection = $this->option('connection');
+
+        if (is_null($connection)) {
+            $connection = config('database.default');
+        }
+
         $backupPath = $this->option('backup');
 
         if (is_null($backupPath)) {
@@ -43,9 +49,9 @@ class DatabaseRestore extends Command
         $dbDumpContents = File::get($backupPath);
         $fileSize = File::size($backupPath) + 2000;
 
-        DB::unprepared('set global max_allowed_packet='.$fileSize);
+        DB::connection($connection)->unprepared('set global max_allowed_packet='.$fileSize);
 
-        DB::unprepared($dbDumpContents.' --max_allowed_packet='.$fileSize);
+        DB::connection($connection)->unprepared($dbDumpContents.' --max_allowed_packet='.$fileSize);
 
         $this->info('Completed');
     }
