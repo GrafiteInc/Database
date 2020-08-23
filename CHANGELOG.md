@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.2.0] - 2020-08-23
+
+### Added
+- New set table start command for auto_increment setting
+
 ## [v2.1.0] - 2020-06-19
 
 ### Added
