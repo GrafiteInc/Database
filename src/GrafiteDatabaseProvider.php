@@ -9,6 +9,7 @@ use Grafite\Database\Commands\DatabaseCreate;
 use Grafite\Database\Commands\DatabaseUpload;
 use Grafite\Database\Commands\DatabaseRestore;
 use Grafite\Database\Commands\DatabaseDownload;
+use Grafite\Database\Commands\TableStart;
 
 class GrafiteDatabaseProvider extends ServiceProvider
 {
@@ -39,6 +40,7 @@ class GrafiteDatabaseProvider extends ServiceProvider
             DatabaseDrop::class,
             DatabaseDownload::class,
             DatabaseUpload::class,
+            TableStart::class,
         ]);
     }
 }
