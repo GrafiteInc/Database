@@ -42,10 +42,10 @@ class TableEmpty extends Command
         $table = $this->argument('table');
         $days = $this->option('days');
 
-        $sql = "truncate $table";
+        $sql = "truncate ${table}";
 
         if ($days) {
-            $sql = "delete from $table where created_at <= " . Carbon::now()->subDays($days);
+            $sql = "delete from ${table} where failed_at <= '" . Carbon::now()->subDays($days) . "'";
         }
 
         DB::unprepared($sql);
