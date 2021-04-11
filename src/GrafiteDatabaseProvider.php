@@ -3,13 +3,16 @@
 namespace Grafite\Database;
 
 use Illuminate\Support\ServiceProvider;
+use Grafite\Database\Commands\TableEmpty;
+use Grafite\Database\Commands\TableStart;
 use Grafite\Database\Commands\DatabaseDrop;
+use Grafite\Database\Commands\DatabaseSize;
+use Grafite\Database\Commands\TableOptimize;
 use Grafite\Database\Commands\DatabaseBackup;
 use Grafite\Database\Commands\DatabaseCreate;
 use Grafite\Database\Commands\DatabaseUpload;
 use Grafite\Database\Commands\DatabaseRestore;
 use Grafite\Database\Commands\DatabaseDownload;
-use Grafite\Database\Commands\TableStart;
 
 class GrafiteDatabaseProvider extends ServiceProvider
 {
@@ -40,7 +43,10 @@ class GrafiteDatabaseProvider extends ServiceProvider
             DatabaseDrop::class,
             DatabaseDownload::class,
             DatabaseUpload::class,
+            DatabaseSize::class,
             TableStart::class,
+            TableEmpty::class,
+            TableOptimize::class,
         ]);
     }
 }
