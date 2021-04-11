@@ -12,14 +12,14 @@ class DatabaseSize extends Command
      *
      * @var string
      */
-    protected $signature = 'db:drop {name}';
+    protected $signature = 'db:size {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Drop a database';
+    protected $description = 'Get a database\'s size';
 
     /**
      * Create a new command instance.
@@ -53,9 +53,9 @@ class DatabaseSize extends Command
             return $item->database === $name;
         });
 
-        $this->info([
+        $this->info(json_encode([
             'table_count' => $data->count(),
-            'total_size' => $data->pluck('mb')->sum(),
-        ]);
+            'total_size' => round($data->pluck('mb')->sum(), 2),
+        ]));
     }
 }
