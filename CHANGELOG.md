@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.5.0] - 2022-02-08
+
+### Added
+- Table optimizing
+- Laravel 9 compatibility
+- DB Macros
+
 ## [v2.4.2] - 2021-04-11
 
 ### Fixed
