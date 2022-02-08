@@ -12,14 +12,14 @@ class TableOptimize extends Command
      *
      * @var string
      */
-    protected $signature = 'db:drop {name}';
+    protected $signature = 'db:table-optimize {table}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Drop a database';
+    protected $description = 'Optimize a database table';
 
     /**
      * Create a new command instance.
@@ -38,12 +38,12 @@ class TableOptimize extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $table = $this->argument('table');
 
-        $sql = "OPTIMIZE table `{$name}`";
+        $sql = "OPTIMIZE table `{$table}`";
 
         DB::unprepared($sql);
 
-        $this->info("Table: $name has been optimized");
+        $this->info("Table: $table has been optimized");
     }
 }
