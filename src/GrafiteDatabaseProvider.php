@@ -17,7 +17,7 @@ use Grafite\Database\Commands\DatabaseUpload;
 use Grafite\Database\Commands\DatabaseRestore;
 use Grafite\Database\Commands\DatabaseDownload;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
