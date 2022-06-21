@@ -11,7 +11,7 @@
     "require": {
         "php": ">=7.2",
         "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
-        "spatie/db-dumper": "^2.15"
+        "spatie/db-dumper": "^2.15|^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",
