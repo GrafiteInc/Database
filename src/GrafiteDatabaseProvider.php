@@ -16,8 +16,9 @@ use Grafite\Database\Commands\DatabaseCreate;
 use Grafite\Database\Commands\DatabaseUpload;
 use Grafite\Database\Commands\DatabaseRestore;
 use Grafite\Database\Commands\DatabaseDownload;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Grafite\Database\Commands\DatabaseBackupPurge;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
@@ -129,6 +130,7 @@ class GrafiteDatabaseProvider extends ServiceProvider
         */
         $this->commands([
             DatabaseBackup::class,
+            DatabaseBackupPurge::class,
             DatabaseRestore::class,
             DatabaseCreate::class,
             DatabaseDrop::class,
