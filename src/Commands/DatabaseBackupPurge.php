@@ -2,13 +2,10 @@
 
 namespace Grafite\Database\Commands;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Spatie\DbDumper\Databases\MySql;
-use Illuminate\Support\Facades\Storage;
 
-class DatabaseBackup extends Command
+class DatabaseBackupPurge extends Command
 {
     /**
      * The name and signature of the console command.
