@@ -14,13 +14,13 @@ The Grafite Database package is a collection of commands to help with MySQL rela
 
 ## Requirements
 
-1. PHP 7.2+
+1. PHP 7.2+|8.0+
 
 ## Compatibility and Support
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| ^6.x - ^9.x | 2.x | yes |
+| ^6.x - ^10.x | 2.x | yes |
 | ^6.x - ^7.x | 1.x | no |
 
 ### Installation

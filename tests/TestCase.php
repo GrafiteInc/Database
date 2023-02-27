@@ -21,6 +21,5 @@ class TestCase extends Orchestra\Testbench\TestCase
         parent::setUp();
 
         $this->withoutMiddleware();
-        $this->withoutEvents();
     }
 }
