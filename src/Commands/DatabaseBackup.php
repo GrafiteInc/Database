@@ -59,6 +59,8 @@ class DatabaseBackup extends Command
         }
 
         $backup = MySql::create()
+            ->setHost(config('database.connections.mysql.host'))
+            ->setPort(config('database.connections.mysql.port'))
             ->setDbName(config('database.connections.mysql.database'))
             ->setUserName(config('database.connections.mysql.username'))
             ->setPassword(config('database.connections.mysql.password'));
