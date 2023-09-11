@@ -3,7 +3,7 @@
 **Database** - A set of handy commands for MySQL databases.
 
 [![PHP Package Tests](https://github.com/grafiteinc/Database/workflows/PHP%20Package%20Tests/badge.svg)](https://github.com/grafiteinc/Database/actions?query=workflow%3A%22PHP+Package+Tests%22)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8c00a046fec32d8b8ac7/maintainability)](https://codeclimate.com/github/GrafiteInc/database/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/47f054f3cab8dbb2d49d/maintainability)](https://codeclimate.com/github/GrafiteInc/Database/maintainability)
 [![Packagist](https://img.shields.io/packagist/dt/grafite/database.svg)](https://packagist.org/packages/grafite/database)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/database)
 
