@@ -40,12 +40,13 @@ class TableEmpty extends Command
     public function handle()
     {
         $table = $this->argument('table');
+        $key = $this->option('key') ?? 'failed_at';
         $days = $this->option('days');
 
         $sql = "truncate ${table}";
 
         if ($days) {
-            $sql = "delete from ${table} where failed_at <= '" . Carbon::now()->subDays($days) . "'";
+            $sql = "delete from ${table} where ${key} <= '" . Carbon::now()->subDays($days) . "'";
         }
 
         DB::unprepared($sql);

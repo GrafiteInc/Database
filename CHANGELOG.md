@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.8.1] - 2023-10-05
+
+### Fixed
+- Issue with locked in key name for table empty
+
 ## [v2.8.0] - 2023-03-06
 
 ### Fixed
