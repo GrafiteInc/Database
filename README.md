@@ -20,7 +20,7 @@ The Grafite Database package is a collection of commands to help with MySQL rela
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| ^6.x - ^10.x | 2.x | yes |
+| ^6.x - ^11.x | 2.x | yes |
 | ^6.x - ^7.x | 1.x | no |
 
 ### Installation
