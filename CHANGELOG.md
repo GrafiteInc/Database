@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.9.1] - 2024-10-07
+
+### Fixed
+- Issue with table empty command
+
 ## [v2.9.0] - 2024-03-12
 
 ### Added
