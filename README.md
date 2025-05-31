@@ -1,13 +1,13 @@
 ![Grafite Database](GrafiteDatabase-banner.png)
 
-**Database** - A set of handy commands for MySQL databases.
+**Database** - A set of handy commands, and operations for MySQL databases.
 
-[![PHP Package Tests](https://github.com/grafiteinc/Database/workflows/PHP%20Package%20Tests/badge.svg)](https://github.com/grafiteinc/Database/actions?query=workflow%3A%22PHP+Package+Tests%22)
-[![Maintainability](https://api.codeclimate.com/v1/badges/47f054f3cab8dbb2d49d/maintainability)](https://codeclimate.com/github/GrafiteInc/Database/maintainability)
+[![Build Status](https://github.com/GrafiteInc/Database/actions/workflows/php-package-tests.yml/badge.svg?branch=main)](https://github.com/GrafiteInc/Database/actions/workflows/php-package-tests.yml)
+[![Maintainability](https://qlty.sh/badges/7246303d-daee-460a-8c15-8668afee9abe/maintainability.svg)](https://qlty.sh/gh/GrafiteInc/projects/Database)
 [![Packagist](https://img.shields.io/packagist/dt/grafite/database.svg)](https://packagist.org/packages/grafite/database)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/database)
 
-The Grafite Database package is a collection of commands to help with MySQL related concerns in developing including: creating databases, dropping them, backing them up and restoring them.
+The Grafite Database package is a collection of commands and systems to help with MySQL related concerns in developing including: creating databases, dropping them, backing them up and restoring them and more.
 
 ##### Author(s):
 * [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), mattlantz at gmail dot com)
@@ -20,7 +20,8 @@ The Grafite Database package is a collection of commands to help with MySQL rela
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| ^6.x - ^11.x | 2.x | yes |
+| ^11.x - ^12.x | 3.x | yes |
+| ^6.x - ^11.x | 2.x | no |
 | ^6.x - ^7.x | 1.x | no |
 
 ### Installation
