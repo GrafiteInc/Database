@@ -5,6 +5,7 @@ namespace Grafite\Database\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseRestore extends Command
 {
@@ -42,6 +43,15 @@ class DatabaseRestore extends Command
             $backupName = config('backup.filename', 'db-backup');
 
             $backupPath = "{$backupStoragePath}/{$backupName}.sql";
+        }
+
+        if (! File::exists($backupPath)) {
+            $this->info("No local backup found. Downloading from backup storage...");
+
+            $backupStoragePath = config('backup.path', base_path('database/backups'));
+            $dbDumpContents = Storage::disk('backup')->get("backups/{$backupName}.sql");
+
+            File::put($backupPath, $dbDumpContents);
         }
 
         $this->info('Starting Database restore');

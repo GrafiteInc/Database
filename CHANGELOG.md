@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.10.0] - 2026-01-16
+
+### Fix
+- download the backup for restore purposes
+
+### Feature
+- inspect databases for indexes
+
+### Chore
+- update readme
+
 ## [v2.9.2] - 2025-05-05
 
 ### Chore

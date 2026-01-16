@@ -23,16 +23,6 @@ class DatabaseDownload extends Command
     protected $description = 'Upload a db dump to a longer term storage.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
