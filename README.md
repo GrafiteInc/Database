@@ -38,7 +38,7 @@ composer require "grafite/database"
 
 ## Documentation
 
-[https://docs.grafite.ca/utilities/database](https://docs.grafite.ca/utilities/database)
+[https://documentation.grafite.ca/docs/utilities-database](https://documentation.grafite.ca/docs/utilities-database)
 
 ## License
 Grafite Database is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
