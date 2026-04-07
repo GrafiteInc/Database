@@ -3,6 +3,31 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.11.0] - 2026-04-07
+
+### Feature
+- version updates
+
+### Chore
+- update readme
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Merge branch 'develop'
+- Changelog.md update
+- Update composer.json
+
 ## [v2.10.0] - 2026-01-16
 
 ### Fix
