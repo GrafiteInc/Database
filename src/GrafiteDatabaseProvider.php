@@ -64,6 +64,48 @@ class GrafiteDatabaseProvider extends ServiceProvider
             return $this->whereRaw("JSON_SEARCH('$attribute', 'all', '$searchTerm')");
         });
 
+        /*
+        | Swap a huge "WHERE ... IN (...)" for a join against an in-memory
+        | temporary table. Past a few thousand ids MySQL tends to abandon the
+        | index on the IN clause and fall back to a scan; joining an indexed
+        | Memory table keeps the lookup linear. Small sets keep using whereIn,
+        | which is faster for them and avoids the temp-table overhead.
+        |
+        | Note: MySQL only (ENGINE=Memory) and intended for integer keys.
+        */
+        Builder::macro('whereInLarge', function ($column, $ids, int $threshold = 1000) {
+            /** @var Builder $this */
+            $ids = collect($ids)
+                ->reject(fn ($id) => is_null($id))
+                ->unique()
+                ->values();
+
+            if ($ids->count() <= $threshold) {
+                return $this->whereIn($column, $ids->all());
+            }
+
+            $connection = $this->getConnection();
+            $tempTable = 'grafite_temp_ids_' . Str::random(16);
+
+            $connection->statement(
+                "CREATE TEMPORARY TABLE `{$tempTable}` (id BIGINT PRIMARY KEY) ENGINE=Memory"
+            );
+
+            $ids->chunk(1000)->each(function ($chunk) use ($connection, $tempTable) {
+                $connection->table($tempTable)->insert(
+                    $chunk->map(fn ($id) => ['id' => $id])->all()
+                );
+            });
+
+            // Qualify the base table's columns so the join doesn't leak the
+            // temp table's id into the results when no select was set.
+            if (empty($this->getQuery()->columns)) {
+                $this->select($this->getModel()->getTable() . '.*');
+            }
+
+            return $this->join($tempTable, $column, '=', "{$tempTable}.id");
+        });
+
         Builder::macro('deferredPaginate', function ($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {
             $model = $this->newModelInstance();
             $key = $model->getKeyName();
