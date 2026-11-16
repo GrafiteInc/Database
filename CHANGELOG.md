@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.12.0] - 2026-11-16
+
+### Fix(table-empty)
+- replace deprecated string interpolation
+
+### Test(tree)
+- cover recursive CTE tree queries
+
+### Feat(tree)
+- add recursive CTE tree query helpers
+
+### Build(deps)!
+- raise minimum Laravel, PHPUnit, and Testbench versions
+
+### Feature
+- new whereInLarge query helper
+
 ## [v2.11.0] - 2026-04-07
 
 ### Feature
