@@ -2,6 +2,7 @@
 
 namespace Grafite\Database;
 
+use Grafite\Database\Tree\TreeQuery;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
@@ -105,6 +106,33 @@ class GrafiteDatabaseProvider extends ServiceProvider
 
             return $this->join($tempTable, $column, '=', "{$tempTable}.id");
         });
+
+        /*
+        | Ancestor / descendant lookups for adjacency-list trees (a
+        | self-referencing parent column), resolved in a single query with a
+        | recursive CTE. Accepts a model, a key, or an array/collection of either.
+        |
+        |   Category::whereDescendantOf($electronics)->get();
+        |   Category::whereAncestorOf($phone, ordered: true)->pluck('name'); // root first
+        |
+        | $depth limits how many levels are walked; $ordered joins the CTE to
+        | add a `tree_depth` column and sort top-down.
+        |
+        | Note: needs recursive CTEs (MySQL 8+, MariaDB 10.2+, Postgres, SQLite).
+        */
+        $treeMacros = [
+            'whereDescendantOf' => [TreeQuery::DESCENDANTS, false],
+            'whereDescendantOrSelfOf' => [TreeQuery::DESCENDANTS, true],
+            'whereAncestorOf' => [TreeQuery::ANCESTORS, false],
+            'whereAncestorOrSelfOf' => [TreeQuery::ANCESTORS, true],
+        ];
+
+        foreach ($treeMacros as $name => [$direction, $includeSelf]) {
+            Builder::macro($name, function ($nodes, string $parentColumn = 'parent_id', ?int $depth = null, bool $ordered = false) use ($direction, $includeSelf) {
+                /** @var Builder $this */
+                return TreeQuery::apply($this, $nodes, $direction, $parentColumn, $depth, $includeSelf, $ordered);
+            });
+        }
 
         Builder::macro('deferredPaginate', function ($perPage = null, $columns = ['*'], $pageName = 'page', $page = null) {
             $model = $this->newModelInstance();
